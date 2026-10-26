@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XL HASAN Panel Shop</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f7fa;
+  color: #202b36;
+  padding-bottom: 75px;
+}
+
+.header {
+  background: white;
+  padding: 17px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px #ddd;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+}
+
+.logo-icon {
+  width: 43px;
+  height: 43px;
+  background: #08b786;
+  color: white;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+}
+
+.balance {
+  background: #e2fff4;
+  color: #079b70;
+  padding: 9px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.welcome {
+  padding: 20px 10px;
+  text-align: center;
+  color: #079b70;
+  font-weight: bold;
+}
+
+.banner {
+  margin: 0 12px 18px;
+  padding: 25px 15px;
+  border-radius: 12px;
+  color: white;
+  background: linear-gradient(120deg, #101326, #d20b32, #ff9a00);
+  text-align: center;
+}
+
+.banner h1 {
+  font-size: 27px;
+  margin-bottom: 8px;
+}
+
+.banner p {
+  font-size: 13px;
+}
+
+.categories {
+  display: flex;
+  gap: 9px;
+  padding: 8px 12px;
+  overflow-x: auto;
+}
+
+.categories button {
+  border: none;
+  border-radius: 25px;
+  padding: 12px 17px;
+  background: white;
+  color: #303b48;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.categories button.active {
+  background: #09b985;
+  color: white;
+}
+
+.section-title {
+  text-align: center;
+  margin: 27px 0 7px;
+  font-size: 21px;
+}
+
+.underline {
+  width: 75px;
+  height: 4px;
+  background: #08b786;
+  margin: 0 auto 20px;
+  border-radius: 10px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0 12px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px #e1e5e9;
+}
+
+.product-image {
+  min-height: 145px;
+  padding: 15px 7px;
+  background: linear-gradient(140deg, #220c21, #c90d38, #111);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.product-image .symbol {
+  font-size: 35px;
+  margin-bottom: 8px;
+}
+
+.product-image h3 {
+  font-size: 18px;
+}
+
+.product-image p {
+  margin-top: 7px;
+  font-size: 12px;
+}
+
+.card-info {
+  padding: 10px;
+  text-align: center;
+}
+
+.product-name {
+  font-size: 13px;
+  min-height: 34px;
+  font-weight: bold;
+}
+
+.verified {
+  display: inline-block;
+  margin: 8px 0;
+  color: #078e69;
+  background: #e1fff3;
+  border-radius: 20px;
+  padding: 6px 10px;
+  font-size: 11px;
+}
+
+.price {
+  display: block;
+  color: #079b70;
+  font-weight: bold;
+  margin: 5px 0 10px;
+}
+
+.buy, .details {
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 7px;
+  padding: 11px 3px;
+  font-weight: bold;
+  margin-top: 7px;
+  cursor: pointer;
+}
+
+.buy {
+  background: #08b786;
+  color: white;
+}
+
+.details {
+  background: #eef3f6;
+  color: #253545;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  background: white;
+  box-shadow: 0 -2px 10px #ddd;
+  padding: 9px 2px;
+  z-index: 10;
+}
+
+.bottom-nav button {
+  border: none;
+  background: none;
+  color: #52616e;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.bottom-nav span {
+  display: block;
+  font-size: 21px;
+  margin-bottom: 4px;
+}
+
+.page {
+  display: none;
+  padding: 22px 15px;
+}
+
+.page.active {
+  display: block;
+}
+
+.page h2 {
+  margin-bottom: 15px;
+}
+
+.page p {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.empty {
+  text-align: center;
+  padding: 35px 10px;
+  background: white;
+  border-radius: 12px;
+}
+
+@media (max-width: 350px) {
+  .products {
+    gap: 8px;
+    padding: 0 8px;
+  }
+
+  .product-image h3 {
+    font-size: 15px;
+  }
+
+  .card-info {
+    padding: 7px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="logo">
+    <div class="logo-icon">XL</div>
+    <div>
+      <div>XL HASAN</div>
+      <small>Official Shop</small>
+    </div>
+  </div>
+
+  <div class="balance">৳ <span id="balance">0</span></div>
+</header>
+
+<div id="home" class="page active">
+
+  <div class="welcome">
+    স্বাগতম XL HASAN Official Shop-এ 🎉
+  </div>
+
+  <div class="banner">
+    <h1>XL HASAN SHOP</h1>
+    <p>YOUR SHOP • YOUR CHOICE</p>
+    <p>বিশ্বস্ত ডিজিটাল পণ্যের দোকান</p>
+  </div>
+
+  <div class="categories">
+    <button class="active" onclick="filterProducts('all',this)">ALL</button>
+    <button onclick="filterProducts('android',this)">ANDROID</button>
+    <button onclick="filterProducts('ios',this)">iOS</button>
+    <button onclick="filterProducts('pc',this)">PC</button>
+  </div>
+
+  <h2 class="section-title">OUR PRODUCTS</h2>
+  <div class="underline"></div>
+
+  <div class="products" id="products">
+
+    <article class="card" data-category="android">
+      <div class="product-image">
+        <div class="symbol">📱</div>
+        <h3>ANDROID PACK</h3>
+        <p>Digital Product</p>
+      </div>
+      <div class="card-info">
+        <div class="product-name">Android Digital Pack</div>
+        <span class="verified">✓ Digital Product</span>
+        <span class="price">৳ 29</span>
+        <button class="details" onclick="showDetails('Android Digital Pack')">Details</button>
+        <button class="buy" onclick="orderProduct('Android Digital Pack',29)">BUY NOW</button>
+      </div>
+    </article>
+
+    <article class="card" data-category="ios">
+      <div class="product-image">
+        <div class="symbol">🍎</div>
+        <h3>iOS PACK</h3>
+        <p>Digital Product</p>
+      </div>
+      <div class="card-info">
+        <div class="product-name">iOS Digital Pack</div>
+        <span class="verified">✓ Digital Product</span>
+        <span class="price">৳ 49</span>
+        <button class="details" onclick="showDetails('iOS Digital Pack')">Details</button>
+        <button class="buy" onclick="orderProduct('iOS Digital Pack',49)">BUY NOW</button>
+      </div>
+    </article>
+
+    <article class="card" data-category="pc">
+      <div class="product-image">
+        <div class="symbol">💻</div>
+        <h3>PC PACK</h3>
+        <p>Digital Product</p>
+      </div>
+      <div class="card-info">
+        <div class="product-name">PC Digital Pack</div>
+        <span class="verified">✓ Digital Product</span>
+        <span class="price">৳ 99</span>
+        <button class="details" onclick="showDetails('PC Digital Pack')">Details</button>
+        <button class="buy" onclick="orderProduct('PC Digital Pack',99)">BUY NOW</button>
+      </div>
+    </article>
+
+    <article class="card" data-category="android">
+      <div class="product-image">
+        <div class="symbol">🎮</div>
+        <h3>GAMING PACK</h3>
+        <p>Gaming Accessories</p>
+      </div>
+      <div class="card-info">
+        <div class="product-name">Gaming Digital Pack</div>
+        <span class="verified">✓ Digital Product</span>
+        <span class="price">৳ 59</span>
+        <button class="details" onclick="showDetails('Gaming Digital Pack')">Details</button>
+        <button class="buy" onclick="orderProduct('Gaming Digital Pack',59)">BUY NOW</button>
+      </div>
+    </article>
+
+  </div>
+</div>
+
+<div id="fund" class="page">
+  <h2>💰 Add Fund</h2>
+  <div class="empty">
+    <p>তোমার ব্যালেন্স: ৳ <b id="fundBalance">0</b></p>
+    <p>পেমেন্ট ব্যবস্থা এখনো যুক্ত করা হয়নি।</p>
+    <p>পেমেন্ট নিশ্চিত না করে ব্যালেন্স যোগ করা হবে না।</p>
+  </div>
+</div>
+
+<div id="orders" class="page">
+  <h2>📦 My Orders</h2>
+  <div id="orderList" class="empty">এখনো কোনো অর্ডার নেই।</div>
+</div>
+
+<div id="keys" class="page">
+  <h2>🔑 My Keys</h2>
+  <div class="empty">
+    <p>কেনা পণ্যের তথ্য এখানে দেখানো যাবে।</p>
+    <p>এটি ডেমো ডিজাইন; কোনো আসল লাইসেন্স কী তৈরি হয় না।</p>
+  </div>
+</div>
+
+<div id="account" class="page">
+  <h2>👤 My Account</h2>
+  <div class="empty">
+    <p>Welcome to XL HASAN</p>
+    <p>এটি একটি ডেমো ওয়েবসাইট।</p>
+    <p>আসল লগইন চালু করতে নিরাপদ সার্ভার প্রয়োজন।</p>
+  </div>
+</div>
+
+<nav class="bottom-nav">
+  <button onclick="openPage('home')"><span>⌂</span>Home</button>
+  <button onclick="openPage('fund')"><span>＋</span>Add Fund</button>
+  <button onclick="openPage('orders')"><span>▣</span>My Order</button>
+  <button onclick="openPage('keys')"><span>🔑</span>My Keys</button>
+  <button onclick="openPage('account')"><span>♙</span>Account</button>
+</nav>
+
+<script>
+let orders = [];
+
+function openPage(pageId) {
+  document.querySelectorAll('.page').forEach(page => {
+    page.classList.remove('active');
+  });
+
+  document.getElementById(pageId).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function filterProducts(category, button) {
+  document.querySelectorAll('.categories button').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  button.classList.add('active');
+
+  document.querySelectorAll('.card').forEach(card => {
+    card.style.display =
+      category === 'all' || card.dataset.category === category
+      ? 'block' : 'none';
+  });
+}
+
+function showDetails(name) {
+  alert(name + '\n\nএটি একটি ডেমো ডিজিটাল পণ্য।');
+}
+
+function orderProduct(name, price) {
+  const confirmOrder = confirm(
+    name + '\nদাম: ৳' + price +
+    '\n\nএটি শুধু ডেমো অর্ডার। অর্ডারটি তালিকায় যোগ করবে?'
+  );
+
+  if (!confirmOrder) return;
+
+  orders.push({
+    name: name,
+    price: price
+  });
+
+  renderOrders();
+  openPage('orders');
+
+  alert('ডেমো অর্ডার তালিকায় যোগ হয়েছে। কোনো টাকা কাটা হয়নি।');
+}
+
+function renderOrders() {
+  const list = document.getElementById('orderList');
+
+  if (orders.length === 0) {
+    list.textContent = 'এখনো কোনো অর্ডার নেই।';
+    return;
+  }
+
+  list.className = '';
+
+  list.innerHTML = orders.map(order => {
+    const item = document.createElement('div');
+    item.textContent = order.name + ' — ৳' + order.price;
+    item.style.cssText =
+      'background:white;padding:15px;margin-bottom:10px;border-radius:10px';
+    return item.outerHTML;
+  }).join('');
+}
+</script>
+
+</body>
+</html>
